@@ -1,22 +1,22 @@
 # attaches to a ENGINE.Rage_letter and modifies it based on some stuff...
-class ENGINE.Rage_Letter_Mod_Container extends Array
+# class ENGINE.Rage_Letter_Mod_Container extends Array
     # maybe later..., i was thikning that i don't want multiple
     # of the same mods affecting the same letter and i need some 
     # way to track taht but now i don't care
 
-class ENGINE.Rage_Letter_Mod
+class ENGINE.Base_Animation_Mod
 
-    letter: undefined
+    b_animation: undefined
     type: undefined # some random modifier name
     applied: false
 
-    constructor: (@letter) ->
+    constructor: (@b_animation) ->
         @assign_type();
 
     # Convenience accessors
-    lifespan: () => return @letter.lifespan;
-    time_passed: () => return @letter.time_passed;
-    model: () => return @letter.model
+    lifespan: () => return @b_animation.lifespan;
+    time_passed: () => return @b_animation.time_passed;
+    model: () => return @b_animation.model
 
     # ... makes perfect sense...
     RAND_RGB = "rr"
@@ -27,12 +27,12 @@ class ENGINE.Rage_Letter_Mod
     WIREFRAME = "w"
 
     assign_type: () =>
-        @type = _.sample([WIREFRAME])
+        @type = _.sample([WIREFRAME, LIVE_LONGER])
         # @type = _.sample([RAND_RGB, LIVE_LONGER, SHRINK, EXPAND])
         # @type = _.sample([RAND_RGB, LIVE_LONGER, SHRINK, EXPAND, DISTORT, WIREFRAME])
 
     remove_self: () =>
-        @letter.mods = _.reject(@letter.mods, (elem) ->
+        @b_animation.mods = _.reject(@b_animation.mods, (elem) ->
             elem == @
             ) 
 
@@ -47,7 +47,7 @@ class ENGINE.Rage_Letter_Mod
                 @applied = true
             # make the letter live longer
             if @type is LIVE_LONGER
-                @letter.lifespan += .4
+                @b_animation.lifespan += .4
                 @applied = true
             # make the letter smaller slowly
             if @type is SHRINK
@@ -82,6 +82,10 @@ class ENGINE.Rage_Letter_Mod
                 wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x00ee00, wireframe: true, transparent: true } )
                 @model().material = wireframeMaterial;
                 @applied = true;
+            if @type is DISTORT
+                if @model() is undefined
+                    return 
+                
 
     apply_scale: (shrink_scale) =>
         model = @model()
@@ -91,7 +95,7 @@ class ENGINE.Rage_Letter_Mod
     
 
 # Enables the spewing of letters everywhere!
-class ENGINE.Rage_Letter extends ENGINE.Entity
+class ENGINE.Base_Animation extends ENGINE.Entity
 
     lifespan: undefined # in seconds. clock.getDelta returns thousands of seconds...
     time_passed: 0
@@ -99,8 +103,8 @@ class ENGINE.Rage_Letter extends ENGINE.Entity
     mods: [] # ENGINE.Rage_Letter_Mod s
 
     # Because screw proper code factoring
-    @get_random_letter: ->
-        rl = _.sample(ENGINE.rage_letters);
+    @get_random_animation: ->
+        rl = _.sample(ENGINE.base_animations);
         # console.log("random letter #{rl.letter}")
         return rl
 
@@ -179,7 +183,7 @@ class ENGINE.Rage_Letter extends ENGINE.Entity
 
     add_random_modifier: () =>
         # console.log("adding random modifier to #{@letter}")
-        @mods.push(new ENGINE.Rage_Letter_Mod(@))
+        @mods.push(new ENGINE.Base_Animation_Mod(@))
 
 
 class ENGINE.Rage_Sound 

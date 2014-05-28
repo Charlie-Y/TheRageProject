@@ -82,24 +82,24 @@
     return renderer.render(scene, camera);
   };
 
-  ENGINE.rage_letters = new ENGINE.Collection(ENGINE);
+  ENGINE.base_animations = new ENGINE.Collection(ENGINE);
 
   ENGINE.Init = function() {
     console.log("Engine Init");
     document.addEventListener("keydown", ENGINE.Key_Manager.keydown, false);
     document.addEventListener("keyup", ENGINE.Key_Manager.keyup, false);
-    return ENGINE.rage_letters.add(ENGINE.Rage_Letter, {
+    return ENGINE.base_animations.add(ENGINE.Base_Animation, {
       lifespan: 2
     });
   };
 
   ENGINE.render = function() {
-    return ENGINE.rage_letters.call('render', void 0);
+    return ENGINE.base_animations.call('render', void 0);
   };
 
   ENGINE.update = function(delta) {
-    ENGINE.rage_letters.call('step', delta);
-    return ENGINE.rage_letters.step();
+    ENGINE.base_animations.call('step', delta);
+    return ENGINE.base_animations.step();
   };
 
   init();

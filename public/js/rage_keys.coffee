@@ -34,19 +34,23 @@ class ENGINE.Key_Manager
         # if not @enough_keys_pressed()
             ## console.log("not enough keys");
             # return;
+        # console.log("pressed_keys #{@pressed_keys.length}")
+        if @pressed_keys.length > 3
+            console.log("punched?")
+
         letter = @string_for_key(key)
         # console.log("Key down #{key} - #{letter}");
         # console.log("Key down #{letter}");
-        # if @rage_letter_count() > 0 and percent_chance(0)
-        #     random_letter = ENGINE.Rage_Letter.get_random_letter()
-        #     random_letter.add_random_modifier();
+        if @rage_letter_count() > 0 and percent_chance(80)
+            random_letter = ENGINE.Base_Animation.get_random_animation()
+            random_letter.add_random_modifier();
         # else 
-        # ENGINE.rage_letters.add(ENGINE.Rage_Letter, {lifespan: 2, letter:letter})
-        ENGINE.rage_letters.add(ENGINE.Rage_Letter, {lifespan: 2, letter:letter}).add_random_modifier();
+        ENGINE.base_animations.add(ENGINE.Base_Animation, {lifespan: .4, letter:letter})
+        # ENGINE.rage_letters.add(ENGINE.Rage_Letter, {lifespan: .3, letter:letter}).add_random_modifier();
 
 
     @rage_letter_count: () ->
-        return ENGINE.rage_letters.length;
+        return ENGINE.base_animations.length;
 
     @string_for_key: (key) ->
         str = "foo"

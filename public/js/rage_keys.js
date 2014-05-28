@@ -45,17 +45,24 @@
     };
 
     Key_Manager.handle_key_down = function(key) {
-      var letter;
+      var letter, random_letter;
       this.pressed_keys.push(key);
+      if (this.pressed_keys.length > 3) {
+        console.log("punched?");
+      }
       letter = this.string_for_key(key);
-      return ENGINE.rage_letters.add(ENGINE.Rage_Letter, {
-        lifespan: 2,
+      if (this.rage_letter_count() > 0 && percent_chance(80)) {
+        random_letter = ENGINE.Base_Animation.get_random_animation();
+        random_letter.add_random_modifier();
+      }
+      return ENGINE.base_animations.add(ENGINE.Base_Animation, {
+        lifespan: .4,
         letter: letter
-      }).add_random_modifier();
+      });
     };
 
     Key_Manager.rage_letter_count = function() {
-      return ENGINE.rage_letters.length;
+      return ENGINE.base_animations.length;
     };
 
     Key_Manager.string_for_key = function(key) {

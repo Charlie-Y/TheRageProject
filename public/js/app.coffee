@@ -99,18 +99,18 @@ render = () ->
     renderer.render( scene, camera );
 
 # ENGINE.sounds = new ENGINE.Collection(ENGINE);
-ENGINE.rage_letters = new ENGINE.Collection(ENGINE);
+ENGINE.base_animations = new ENGINE.Collection(ENGINE);
 # ENGINE.global_animations = new ENGINE.Collection(ENGINE);
 
 ENGINE.Init = () ->
     console.log("Engine Init")
     document.addEventListener("keydown", ENGINE.Key_Manager.keydown, false);
     document.addEventListener("keyup", ENGINE.Key_Manager.keyup, false);
-    ENGINE.rage_letters.add(ENGINE.Rage_Letter, {lifespan: 2})
+    ENGINE.base_animations.add(ENGINE.Base_Animation, {lifespan: 2})
     
 
 ENGINE.render = () ->
-    ENGINE.rage_letters.call('render', undefined);
+    ENGINE.base_animations.call('render', undefined);
 
     # @sounds.call('render', undefined);
     # @global_animations.call('render', undefined);
@@ -126,8 +126,8 @@ ENGINE.update = (delta) ->
     #     console.log("Num letters: #{ENGINE.rage_letters.length}")
 
     # @sounds.call('step', delta);
-    ENGINE.rage_letters.call('step', delta);
-    ENGINE.rage_letters.step();
+    ENGINE.base_animations.call('step', delta);
+    ENGINE.base_animations.step();
     # @global_animations.call('step', delta);
 
 
