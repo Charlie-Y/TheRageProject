@@ -29,7 +29,8 @@ init = () ->
     camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
     ENGINE.threeCamera = camera
     scene.add(camera);
-    camera.position.set(0,70,0);
+    camera.position.set(0,100,70);
+    # camera.position.set(40,120,70);
     # camera.position.set(0,150,400);
 
     camera.lookAt(scene.position);  
@@ -54,7 +55,9 @@ init = () ->
     # floorTexture = new THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' );
     # floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
     # floorTexture.repeat.set( 10, 10 );
-    floorMaterial = new THREE.MeshBasicMaterial( { color: 0x0e0f1a, side: THREE.DoubleSide } );
+    # floorMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } );
+    floorMaterial = new THREE.MeshBasicMaterial( { color: 0x101010, side: THREE.DoubleSide } );
+    # floorMaterial = new THREE.MeshBasicMaterial( { color: 0x0e0f1a, side: THREE.DoubleSide } );
     # floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
     floorGeometry = new THREE.PlaneGeometry(2000, 2000, 10, 10);
     floor = new THREE.Mesh(floorGeometry, floorMaterial);
@@ -100,13 +103,26 @@ render = () ->
 
 # ENGINE.sounds = new ENGINE.Collection(ENGINE);
 ENGINE.base_animations = new ENGINE.Collection(ENGINE);
+# Redfine the clean as to update the twitter link properluy
+ENGINE.base_animations.clean = () ->
+    len = @length
+    i = 0
+    while i < len
+        if this[i]._remove
+            ENGINE.Animation_Sounds.playHighChime(this[i].letter);
+            @splice i--, 1
+            len--
+        i++
+    ENGINE.Key_Manager.update_twitter_link();
+
 # ENGINE.global_animations = new ENGINE.Collection(ENGINE);
 
 ENGINE.Init = () ->
     console.log("Engine Init")
     document.addEventListener("keydown", ENGINE.Key_Manager.keydown, false);
     document.addEventListener("keyup", ENGINE.Key_Manager.keyup, false);
-    ENGINE.base_animations.add(ENGINE.Base_Animation, {lifespan: 2})
+
+    # ENGINE.base_animations.add(ENGINE.Base_Animation, {lifespan: 10}).add_mod("fb").add_mod("fb")
     
 
 ENGINE.render = () ->

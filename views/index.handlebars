@@ -2,14 +2,25 @@
 <html>
 
 <head>
-    <title>RageQuit</title>
+    <title>Mash</title>
 
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/application.css">
     
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 </head>
 
 <body>
+
+    <div id="twitter-bar">
+        <a id="twitter-btn" href="https://twitter.com/maSHA512_224" target="_blank">
+            <img id="twitter-bird" src="/images/bird_gray_48.png">
+        </a>
+        <span id="twitter-count">0</span>
+
+    </div>
 
 <div id="ThreeJS"></div>
 
@@ -21,7 +32,7 @@
 
 <!-- Utilities -->
 <script src="/js/underscore.js"></script>
-<!-- <script src="/js/color.js"></script> -->
+<script src="/js/jquery-1.11.0.min.js"></script>
 
 
 <!-- Three libraries -->
@@ -33,12 +44,19 @@
 
 <!-- Typeface stuff -->
 <script src="/js/helvetiker_bold.typeface.js"></script>
+<script src="/js/helvetiker_regular.typeface.js"></script>
 
-<script src="/js/rage_engine.js"></script>
-<script src="/js/rage_data.js"></script>
-<script src="/js/rage_keys.js"></script>
 
-<script src="/js/app.js"></script>
+<script src="/js/animation_engine.js"></script>
+<script src="/js/animation_sounds.js"></script>
+
+<script src="/js/base_animation.js"></script>
+<script src="/js/base_animation_mod.js"></script>
+<script src="/js/animation_keys.js"></script>
+
+<script src="/js/animation_app.js"></script>
+
+
 
 
 </body>

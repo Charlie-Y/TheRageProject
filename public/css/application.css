@@ -1,22 +1,18 @@
-#poem {
-  max-width: 70%;
-  margin: 2em auto;
-  overflow: auto;
-  line-height: 1.7; }
-
-.random-shit[type="input"].random-1 {
-  max-width: 10%; }
-.random-shit[type="input"].random-2 {
-  max-width: 15%; }
-.random-shit[type="input"].random-3 {
-  max-width: 8%; }
-.random-shit[type="password"].random-1 {
-  max-width: 7%; }
-.random-shit[type="password"].random-2 {
-  max-width: 10%; }
-.random-shit[type="password"].random-3 {
-  max-width: 20%; }
-
 body {
-  margin: 0;
-  overflow: hidden; }
+  font-family: 'Open Sans', sans-serif; }
+
+#twitter-bar {
+  position: fixed;
+  right: 52%;
+  bottom: 10%; }
+
+#twitter-btn {
+  text-decoration: none; }
+
+#twitter-count {
+  font-size: 80px;
+  color: #e7e7e7;
+  display: inline-block;
+  position: absolute;
+  bottom: -16px;
+  left: 60px; }

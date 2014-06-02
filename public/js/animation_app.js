@@ -29,7 +29,7 @@
     camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
     ENGINE.threeCamera = camera;
     scene.add(camera);
-    camera.position.set(0, 70, 0);
+    camera.position.set(0, 100, 70);
     camera.lookAt(scene.position);
     renderer = new THREE.WebGLRenderer({
       antialias: true
@@ -46,7 +46,7 @@
     light.position.set(100, 250, 100);
     scene.add(light);
     floorMaterial = new THREE.MeshBasicMaterial({
-      color: 0x0e0f1a,
+      color: 0x101010,
       side: THREE.DoubleSide
     });
     floorGeometry = new THREE.PlaneGeometry(2000, 2000, 10, 10);
@@ -84,13 +84,25 @@
 
   ENGINE.base_animations = new ENGINE.Collection(ENGINE);
 
+  ENGINE.base_animations.clean = function() {
+    var i, len;
+    len = this.length;
+    i = 0;
+    while (i < len) {
+      if (this[i]._remove) {
+        ENGINE.Animation_Sounds.playHighChime(this[i].letter);
+        this.splice(i--, 1);
+        len--;
+      }
+      i++;
+    }
+    return ENGINE.Key_Manager.update_twitter_link();
+  };
+
   ENGINE.Init = function() {
     console.log("Engine Init");
     document.addEventListener("keydown", ENGINE.Key_Manager.keydown, false);
-    document.addEventListener("keyup", ENGINE.Key_Manager.keyup, false);
-    return ENGINE.base_animations.add(ENGINE.Base_Animation, {
-      lifespan: 2
-    });
+    return document.addEventListener("keyup", ENGINE.Key_Manager.keyup, false);
   };
 
   ENGINE.render = function() {

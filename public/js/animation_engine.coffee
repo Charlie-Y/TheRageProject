@@ -87,6 +87,7 @@ class ENGINE.Collection  extends Array
             @splice i--, 1
             len--
           i++
+        
 
     step: (delta) ->
         if (@dirty)

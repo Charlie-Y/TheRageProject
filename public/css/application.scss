@@ -1,74 +1,26 @@
-// body{
-    // background-color:rgb(14, 11, 11);
-// }
-
-#poem{
-    max-width: 70%;
-    margin: 2em auto;
-    overflow: auto;
-    line-height: 1.7;
+body{
+    font-family: 'Open Sans', sans-serif;
 }
 
-.random-shit{
-    &[type="input"].random-1{
-        max-width: 10%;
-    }
-
-    &[type="input"].random-2{
-        max-width: 15%;
-    }
-
-    &[type="input"].random-3{
-        max-width: 8%;
-    }
-
-    &[type="password"].random-1{
-        max-width: 7%;
-    }
-
-    &[type="password"].random-2{
-        max-width: 10%;
-    }
-
-    &[type="password"].random-3{
-        max-width: 20%;
-    }
+#twitter-bar{
+    position: fixed;
+    right:52%;
+    bottom: 10%;
 }
 
-// select.random-1{
-//         width: 10%;
-//     }
-// select.random-2{
-//         width: 30%;
-//     }
-// select.random-3{
-//         width: 5%;
-//     }
+#twitter-btn{
+    text-decoration: none;
+}
 
+.twitter-btn-active{
 
+}
 
-body { margin: 0; overflow: hidden; }   
-
-// .random-shit{
-//     margin: 0;
-// }
-
-// input[type="input"].random-shit{
-//     border:none;
-// }
-
-// input[type="password"].random-shit{
-//     border:none;
-// }
-// .art-line{
-//     height: 20px;
-//     width:100%;
-//     background: blue;
-// }
-
-// .book-text{
-//     position: fixed;
-//     z-index: 1;
-//     text-align: center;
-//     width: 100%;
-// }
+#twitter-count{
+    font-size:80px;
+    color: #e7e7e7;
+    display: inline-block;
+    position: absolute;
+    bottom:-16px;
+    left: 60px;
+}
